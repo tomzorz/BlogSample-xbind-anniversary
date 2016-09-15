@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="XbindAnniversarySample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XbindAnniversarySample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Vertical" Margin="10">
+            <TextBlock Text="Indexers" FontSize="22" />
+            <TextBlock>
+                <Run Text="This is from an indexer: " /><Run Text="{x:Bind TestDictionary['a']}" />
+            </TextBlock>
+            <TextBlock Text="Visibility without converters" FontSize="22" />
+            <Rectangle Width="100" Height="100" HorizontalAlignment="Left" Fill="Red" Visibility="{x:Bind RectangleVisible}" />
+            <TextBlock Text="Explicit casting" FontSize="22" />
+            <CheckBox IsThreeState="true" x:Name="CheckBox" Content="This is a three state checkbox" />
+            <TextBlock Text="The blue rectangle below should only be invisible when the checkbox above is false" />
+            <Rectangle Width="100" Height="100" HorizontalAlignment="Left" Fill="Blue" Visibility="{x:Bind (x:Boolean)CheckBox.IsChecked, Mode=OneWay}" />
+            <TextBlock Text="Function binding" FontSize="22" />
+            <TextBlock Text="The function takes the two strings below and merges them" />
+            <TextBox x:Name="TextBox1" Text="hello" />
+            <TextBox x:Name="TextBox2" Text="world" />
+            <TextBlock Text="{x:Bind DoThing(TextBox1.Text, TextBox2.Text), Mode=OneWay}" />
+        </StackPanel>
+    </Grid>
+</Page>
